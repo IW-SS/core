@@ -64,13 +64,30 @@ CAISO_SCHEMA = StructType(
         StructField('Group', LongType(), True)]
 )
 
+ERCOT_SCHEMA = StructType(
+    [
+        StructField('Date', TimestampType(), True),
+        StructField('HourEnding', StringType(), True),
+        StructField('Coast', DoubleType(), True),
+        StructField('East', DoubleType(), True),
+        StructField('FarWest', DoubleType(), True),
+        StructField('North', DoubleType(), True),
+        StructField('NorthCentral', DoubleType(), True),
+        StructField('SouthCentral', DoubleType(), True),
+        StructField('Southern', DoubleType(), True),
+        StructField('West', DoubleType(), True),
+        StructField('SystemTotal', DoubleType(), True),
+        StructField('DstFlag', StringType(), True)
+    ]
+)
+
 
 def melt(
-    df: DataFrame,
-    id_vars: List[str],
-    value_vars: List[str],
-    var_name: str = "variable",
-    value_name: str = "value",
+        df: DataFrame,
+        id_vars: List[str],
+        value_vars: List[str],
+        var_name: str = "variable",
+        value_name: str = "value",
 ) -> DataFrame:
     """
     Unpivot the data. Convert column values into rows.

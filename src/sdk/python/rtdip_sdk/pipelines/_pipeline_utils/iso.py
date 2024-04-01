@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from typing import List
+
 from pyspark.sql import DataFrame
 from pyspark.sql.functions import col, array, lit, struct, explode
 from pyspark.sql.types import (
@@ -45,6 +46,24 @@ PJM_SCHEMA = StructType(
         StructField("Load", DoubleType(), True),
     ]
 )
+
+PJM_PRICING_SCHEMA = StructType(
+    [
+        StructField("StartTime", TimestampType(), True),
+        StructField("PnodeId", LongType(), True),
+        StructField("PnodeName", StringType(), True),
+        StructField("Voltage", StringType(), True),
+        StructField("Equipment", StringType(), True),
+        StructField("Type", StringType(), True),
+        StructField("Zone", StringType(), True),
+        StructField("SystemEnergyPrice", DoubleType(), True),
+        StructField("TotalLmp", DoubleType(), True),
+        StructField("CongestionPrice", DoubleType(), True),
+        StructField("MarginalLossPrice", DoubleType(), True),
+        StructField("VersionNbr", LongType(), True),
+    ]
+)
+
 
 CAISO_SCHEMA = StructType(
     [
